@@ -2,6 +2,6 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY ./src/api /app/api
 COPY ./src/core /app/core
-RUN pip install fastapi uvicorn
+RUN pip install fastapi uvicorn requests
 EXPOSE 8000
 CMD ["uvicorn", "api.routes:app", "--host", "0.0.0.0", "--port", "8000"]

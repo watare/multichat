@@ -9,6 +9,7 @@ services:
       - "8000"
     environment:
       - API_KEY=c77c0acb-9aa7-4eae-a18a-482be1019d15
+      - UNDERSTANDTECH_API_URL=https://api.understandtech.com/chat
   frontend:
     build:
       context: ./frontend
