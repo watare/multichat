@@ -7,8 +7,8 @@ services:
       - nginx-proxy
     expose:
       - "8000"
-    environment:
-      - API_KEY=c77c0acb-9aa7-4eae-a18a-482be1019d15
+    env_file:
+      - .env
   frontend:
     build:
       context: ./frontend
