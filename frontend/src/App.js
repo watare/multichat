@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -30,9 +31,16 @@ function App() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
-      <h2>Multichat MVP</h2>
-      <form onSubmit={sendMessage} style={{ marginBottom: 20 }}>
+    <div className="chat-container">
+      <h2 className="title">Multichat MVP</h2>
+      <div className="messages">
+        {(messages || []).map((msg, i) => (
+          <div key={i} className="message">
+            <b>{msg.username}:</b> {msg.content}
+          </div>
+        ))}
+      </div>
+      <form onSubmit={sendMessage} className="input-area">
         <input
           type="text"
           placeholder="Votre nom"
@@ -49,13 +57,6 @@ function App() {
         />
         <button type="submit">Envoyer</button>
       </form>
-      <div>
-        {(messages || []).map((msg, i) => (
-          <div key={i} style={{ marginBottom: 10 }}>
-            <b>{msg.username}:</b> {msg.content}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
