@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    networks:
+      - nginx-proxy
+    expose:
+      - "8000"
+    environment:
+      - API_KEY=c77c0acb-9aa7-4eae-a18a-482be1019d15
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: multichat-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      - VIRTUAL_HOST=multichat.padaw.ovh
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=multichat.padaw.ovh
+      - LETSENCRYPT_EMAIL=aurelien.watare@gmail.com
+    networks:
+      nginx-proxy:
+        aliases:
+          - multichat
+networks:
+  nginx-proxy:
+    external: true
